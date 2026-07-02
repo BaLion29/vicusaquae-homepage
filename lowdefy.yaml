@@ -1,3 +1,4 @@
+
 lowdefy: 5.4.0
 name: Lowdefy starter
 
@@ -6,7 +7,7 @@ pages:
     type: PageHeaderMenu
     properties:
       title: Welcome
-    slots:
+    areas:
       content:
         justify: center
         blocks:
@@ -23,7 +24,7 @@ pages:
                   icon:
                     name: AiOutlineHeart
                     color: '#f00'
-                slots:
+                areas:
                   extra:
                     blocks:
                       - id: docs_button
@@ -31,13 +32,14 @@ pages:
                         properties:
                           size: large
                           title: Let's build something
+                          color: '#1890ff'
                         events:
                           onClick:
                             - id: link_to_docs
                               type: Link
                               params:
                                 url: https://docs.lowdefy.com
-                                newWindow: true
+                                newTab: true
       footer:
         blocks:
           - id: footer
@@ -46,3 +48,4 @@ pages:
               type: secondary
               content: |
                 Made by a Lowdefy 🤖
+
