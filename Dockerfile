@@ -7,6 +7,7 @@ COPY . .
 ENV LOWDEFY_BUILD_OUTPUT_STANDALONE 1
 
 # Enable pnpm using corepack
+RUN npm install -g corepack@latest
 RUN corepack enable
 
 # Build lowdefy app
