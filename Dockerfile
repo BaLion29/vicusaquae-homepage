@@ -10,6 +10,7 @@ ENV LOWDEFY_BUILD_OUTPUT_STANDALONE 1
 RUN corepack enable
 
 # Build lowdefy app
+ENV pnpm_config_strict_dep_builds=false
 RUN pnpx lowdefy@5 build --log-level=debug
 
 FROM node:22-bookworm-slim AS runner
