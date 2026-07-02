@@ -1,4 +1,4 @@
-FROM node:18-buster AS builder
+FROM node:22-buster AS builder
 
 WORKDIR /lowdefy
 
@@ -7,13 +7,12 @@ COPY . .
 ENV LOWDEFY_BUILD_OUTPUT_STANDALONE 1
 
 # Enable pnpm using corepack
-RUN npm install -g corepack@latest
 RUN corepack enable
 
 # Build lowdefy app
 RUN pnpx lowdefy@5 build --log-level=debug
 
-FROM node:18-alpine AS runner
+FROM node:22-alpine AS runner
 
 ENV NODE_ENV production
 ENV NEXT_TELEMETRY_DISABLED 1
