@@ -1,12 +1,23 @@
-
 lowdefy: 5.4.0
 name: Lowdefy starter
 
+auth:
+  providers:
+    - id: authentik
+      type: AuthentikProvider
+      properties:
+        clientId:
+          _secret: AUTHENTIK_CLIENT_ID
+        clientSecret:
+          _secret: AUTHENTIK_CLIENT_SECRET
+        issuer:
+          _secret: AUTHENTIK_ISSUER
+
 pages:
-  - id: welcome
+  - id: home
     type: PageHeaderMenu
     properties:
-      title: Welcome
+      title: Vicus Aquae - Home
     areas:
       content:
         justify: center
@@ -48,4 +59,3 @@ pages:
               type: secondary
               content: |
                 Made by a Lowdefy 🤖
-

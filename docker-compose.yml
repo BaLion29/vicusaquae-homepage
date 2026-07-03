@@ -1,5 +1,22 @@
 services:
   lowdefy:
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: lowdefy
     ports:
       - "3000:3000"
+    networks:
+      - traefik_network
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.lowdefy.rule=Host(`home.vicusaquae.ch`)"
+      - "traefik.http.routers.lowdefy.entrypoints=websecure"
+      - "traefik.http.routers.lowdefy.tls=true"
+      - "traefik.http.routers.lowdefy.tls.certresolver=infomaniak"
+      - "traefik.docker.network=traefik_network"
+      - "traefik.http.services.lowdefy.loadbalancer.server.port=3000"
+
+networks:
+  traefik_network:
+    external: true
