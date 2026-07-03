@@ -1,0 +1,7 @@
+id: terminusdb
+type: AxiosHttp
+properties:
+  baseURL: "http://terminusdb:6363/api"
+  headers:
+    Authorization: lowdefy:lowdefy
+    Content-Type: application/json

@@ -2,9 +2,7 @@ lowdefy: 5.4.0
 name: Lowdefy starter
 
 connections:
-  _ref:
-    path: lowdefy.connections.yaml
-    field: connections
+  - _ref: connections/terminusdb.yaml
 
 auth:
   providers:
