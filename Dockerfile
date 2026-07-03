@@ -1,10 +1,13 @@
 FROM node:22-bookworm-slim AS builder
-
 WORKDIR /lowdefy
-
 COPY . .
+
+# Accept build arg and expose it as env for the build
+ARG NEXTAUTH_SECRET
+ENV NEXTAUTH_SECRET=$NEXTAUTH_SECRET
+
 # Configure standalone next build
-ENV LOWDEFY_BUILD_OUTPUT_STANDALONE 1
+ENV LOWDEFY_BUILD_OUTPUT_STANDALONE=1
 
 # Enable pnpm using corepack
 RUN corepack enable
@@ -14,10 +17,8 @@ ENV pnpm_config_strict_dep_builds=false
 RUN pnpx lowdefy@5 build --log-level=debug
 
 FROM node:22-bookworm-slim AS runner
-
-ENV NODE_ENV production
-ENV NEXT_TELEMETRY_DISABLED 1
-
+ENV NODE_ENV=production
+ENV NEXT_TELEMETRY_DISABLED=1
 WORKDIR /lowdefy
 
 RUN addgroup --system --gid 1001 nodejs
@@ -28,9 +29,6 @@ COPY --from=builder --chown=lowdefy:nodejs /lowdefy/.lowdefy/server/.next/standa
 COPY --from=builder --chown=lowdefy:nodejs /lowdefy/.lowdefy/server/.next/static ./.next/static
 
 USER lowdefy
-
 EXPOSE 3000
-
-ENV PORT 3000
-
+ENV PORT=3000
 CMD ["node", "server.js"]
