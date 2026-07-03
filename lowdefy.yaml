@@ -4,6 +4,9 @@ name: Lowdefy starter
 connections:
   - _ref: connections/terminusdb.yaml
 
+requests:
+  - _ref: requests/terminusdb.get_tasks.yaml
+
 auth:
   providers:
     - id: authentik
@@ -21,7 +24,7 @@ pages:
     type: PageHeaderMenu
     properties:
       title: Vicus Aquae - Home
-    areas:
+    slots:
       content:
         justify: center
         blocks:
@@ -31,14 +34,10 @@ pages:
               maxWidth: 800
             blocks:
               - id: content
-                type: Result
+                type: Request
                 properties:
-                  title: Welcome to your Lowdefy app
-                  subTitle: We are excited to see what you are going to build
-                  icon:
-                    name: AiOutlineHeart
-                    color: '#f00'
-                areas:
+                  request: get_tasks
+                slots:
                   extra:
                     blocks:
                       - id: docs_button
@@ -46,19 +45,4 @@ pages:
                         properties:
                           size: large
                           title: Let's build something
-                          color: '#1890ff'
-                        events:
-                          onClick:
-                            - id: link_to_docs
-                              type: Link
-                              params:
-                                url: https://docs.lowdefy.com
-                                newTab: true
-      footer:
-        blocks:
-          - id: footer
-            type: Paragraph
-            properties:
-              type: secondary
-              content: |
-                Made by a Lowdefy 🤖
+                          color: "#1890ff"

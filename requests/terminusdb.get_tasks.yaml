@@ -1,0 +1,4 @@
+id: get_tasks
+connection: terminusdb
+properties:
+  url: "/api/document/admin/lms"
