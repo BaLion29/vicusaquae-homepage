@@ -1,7 +1,10 @@
 lowdefy: 5.4.0
 name: Lowdefy starter
 
-_ref: lowdefy.connections.yaml
+connections:
+  _ref:
+    path: lowdefy.connections.yaml
+    field: connections
 
 auth:
   providers:
