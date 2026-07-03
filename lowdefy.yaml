@@ -1,6 +1,8 @@
 lowdefy: 5.4.0
 name: Lowdefy starter
 
+_ref: lowdefy.connections.yaml
+
 auth:
   providers:
     - id: authentik

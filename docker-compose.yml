@@ -11,6 +11,7 @@ services:
     ports:
       - "3000:3000"
     networks:
+      - db_network
       - traefik_network
     labels:
       - "traefik.enable=true"
@@ -22,5 +23,7 @@ services:
       - "traefik.http.services.lowdefy.loadbalancer.server.port=3000"
 
 networks:
+  db_network:
+    external: true
   traefik_network:
     external: true
